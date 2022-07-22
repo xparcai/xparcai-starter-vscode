@@ -1,0 +1,65 @@
+{
+  "publisher": "vtrbo",
+  "name": "name",
+  "displayName": "My VS Code Extension.",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@7.5.2",
+  "description": "",
+  "author": "Victor Bo <vtrbo.qq.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/vtrbo",
+  "homepage": "https://github.com/vtrbo/[name]#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vtrbo/[name]"
+  },
+  "bugs": {
+    "url": "https://github.com/vtrbo/[name]/issues"
+  },
+  "sponsor": {
+    "url": "https://github.com/sponsors/vtrbo"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./dist/index.js",
+  "icon": "res/icon.png",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "vscode": "^1.69.0"
+  },
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --external vscode",
+    "dev": "nr build --watch",
+    "lint": "eslint .",
+    "vscode:prepublish": "nr build",
+    "publish": "vsce publish --no-dependencies",
+    "pack": "vsce package --no-dependencies",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "release": "bumpp && nr publish"
+  },
+  "devDependencies": {
+    "@babel/types": "^7.18.9",
+    "@types/node": "^18.0.6",
+    "@types/vscode": "^1.69.0",
+    "@vtrbo/eslint-config": "^0.0.5",
+    "@vtrbo/ni": "^0.0.2",
+    "bumpp": "^8.2.1",
+    "eslint": "^8.20.0",
+    "esno": "^0.16.3",
+    "pnpm": "^7.5.2",
+    "rimraf": "^3.0.2",
+    "tsup": "^6.1.3",
+    "typescript": "^4.7.4",
+    "vite": "^3.0.2",
+    "vitest": "^0.18.1",
+    "vsce": "^2.10.0"
+  }
+}
