@@ -1,6 +1,6 @@
 {
   "publisher": "vtrbo",
-  "name": "name",
+  "name": "---name---",
   "displayName": "My VS Code Extension.",
   "version": "0.0.0",
   "private": true,
@@ -9,13 +9,13 @@
   "author": "Victor Bo <vtrbo.qq.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/vtrbo",
-  "homepage": "https://github.com/vtrbo/[name]#readme",
+  "homepage": "https://github.com/vtrbo/---name---#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vtrbo/[name]"
+    "url": "https://github.com/vtrbo/---name---"
   },
   "bugs": {
-    "url": "https://github.com/vtrbo/[name]/issues"
+    "url": "https://github.com/vtrbo/---name---/issues"
   },
   "sponsor": {
     "url": "https://github.com/sponsors/vtrbo"
