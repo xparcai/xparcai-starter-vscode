@@ -35,14 +35,17 @@ bower_components
 build/Release
 
 # Dependency directories
-node_modules/
-jspm_packages/
+~
+node_modules
+jspm_packages
 
 # TypeScript v1 declaration files
-typings/
+typings
 
 # Optional npm cache directory
 .npm
+*.lerna_backup
+*.vsix
 
 # Optional eslint cache
 .eslintcache
@@ -61,6 +64,9 @@ typings/
 
 # parcel-bundler cache (https://parceljs.org/)
 .cache
+# cache
+.temp
+# temp
 
 # next.js build output
 .next
@@ -76,10 +82,10 @@ dist
 
 # IDE
 .idea
+#.vscode
 
 # history
 .history
 
-*.lerna_backup
-*.vsix
-temp
+# generate
+**/plugin-*.d.ts

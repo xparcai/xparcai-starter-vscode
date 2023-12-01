@@ -21,17 +21,14 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: lts/*
           cache: pnpm
 
-      - name: Setup
-        run: npm i -g @vtrbo/ni
-
       - name: Install
-        run: nci
+        run: pnpm install --frozen-lockfile
 
       - name: Lint
-        run: nr lint
+        run: pnpm run lint
 
   typecheck:
     runs-on: ubuntu-latest
@@ -44,24 +41,21 @@ jobs:
       - name: Set node
         uses: actions/setup-node@v3
         with:
-          node-version: 16.x
+          node-version: lts/*
           cache: pnpm
 
-      - name: Setup
-        run: npm i -g @vtrbo/ni
-
       - name: Install
-        run: nci
+        run: pnpm install --frozen-lockfile
 
-      - name: Typecheck
-        run: nr typecheck
+      - name: Type Check
+        run: 'pnpm run type:check'
 
   test:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        node: [14.x, 16.x]
+        node: [lts/*]
         os: [ubuntu-latest, windows-latest, macos-latest]
       fail-fast: false
 
@@ -77,14 +71,11 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: pnpm
 
-      - name: Setup
-        run: npm i -g @vtrbo/ni
-
       - name: Install
-        run: nci
+        run: pnpm install --frozen-lockfile
 
       - name: Build
-        run: nr build
+        run: pnpm run build
 
       - name: Test
-        run: nr test
+        run: pnpm run test

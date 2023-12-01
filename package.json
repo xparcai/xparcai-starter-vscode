@@ -1,27 +1,24 @@
 {
-  "publisher": "vtrbo",
+  "publisher": "xparcai",
   "name": "---name---",
-  "displayName": "My VS Code Extension.",
+  "displayName": "---name---",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@7.9.0",
-  "description": "",
+  "packageManager": "pnpm@8.11.0",
+  "description": "vscode extension.",
   "author": {
-    "name": "Victor Bo",
-    "email": "vtrbo@qq.com"
+    "name": "VictorBo",
+    "email": "hi@qq.com"
   },
   "license": "MIT",
-  "funding": "https://github.com/sponsors/vtrbo",
-  "homepage": "https://github.com/vtrbo/---name---#readme",
+  "funding": "https://github.com/sponsors/xparcai",
+  "homepage": "https://github.com/xparcai/---name---#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/vtrbo/---name---"
+    "url": "https://github.com/xparcai/---name---"
   },
   "bugs": {
-    "url": "https://github.com/vtrbo/---name---/issues"
-  },
-  "sponsor": {
-    "url": "https://github.com/sponsors/vtrbo"
+    "url": "https://github.com/xparcai/---name---/issues"
   },
   "categories": [
     "Other"
@@ -32,37 +29,59 @@
     "dist"
   ],
   "engines": {
-    "vscode": "^1.69.0"
+    "vscode": "^1.69.0",
+    "node": "18.x || 20.x"
   },
   "activationEvents": [
     "onStartupFinished"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --external vscode",
     "dev": "nr build --watch",
-    "lint": "eslint .",
+    "build": "tsup src/index.ts --external vscode",
     "vscode:prepublish": "nr build",
     "publish": "vsce publish --no-dependencies",
     "pack": "vsce package --no-dependencies",
+    "release": "bumpp && nr publish",
+    "type:check": "tsc --noEmit",
     "test": "vitest",
-    "typecheck": "tsc --noEmit",
-    "release": "bumpp && nr publish"
+    "test:update": "vitest -u",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "preinstall": "only-allow pnpm",
+    "prepare": "npx simple-git-hooks",
+    "precommit": "esno verify-commit.ts",
+    "deps": "nr deps:patch",
+    "deps:patch": "taze patch -wri",
+    "deps:minor": "taze minor -wri",
+    "deps:major": "taze major -wri",
+    "clean": "nr clean:dist && nr clean:deps",
+    "clean:dist": "rimraf dist",
+    "clean:deps": "rimraf node_modules"
   },
   "devDependencies": {
-    "@babel/types": "^7.18.10",
-    "@types/node": "^18.7.6",
-    "@types/vscode": "^1.70.0",
-    "@vtrbo/eslint-config": "^0.0.7",
-    "@vtrbo/ni": "^0.0.3",
-    "bumpp": "^8.2.1",
-    "eslint": "^8.22.0",
-    "esno": "^0.16.3",
-    "pnpm": "^7.9.3",
-    "rimraf": "^3.0.2",
-    "tsup": "^6.2.2",
-    "typescript": "^4.7.4",
-    "vite": "^3.0.9",
-    "vitest": "^0.22.1",
-    "vsce": "^2.10.2"
+    "@antfu/eslint-config": "^2.1.2",
+    "@antfu/ni": "^0.21.12",
+    "@types/node": "^18.19.0",
+    "@types/vscode": "^1.84.2",
+    "@vscode/vsce": "^2.22.0",
+    "bumpp": "^9.2.0",
+    "eslint": "^8.54.0",
+    "esno": "^4.0.0",
+    "lint-staged": "^15.1.0",
+    "only-allow": "^1.2.1",
+    "rimraf": "^5.0.5",
+    "simple-git-hooks": "^2.9.0",
+    "taze": "^0.13.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2",
+    "vite": "^5.0.4",
+    "vitest": "^0.34.6"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm dlx lint-staged",
+    "commit-msg": "pnpm run precommit"
+  },
+  "lint-staged": {
+    "*": "pnpm run lint:fix"
   }
 }
